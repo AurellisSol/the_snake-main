@@ -1,4 +1,5 @@
 from random import choice, randint
+
 import pygame
 
 
@@ -33,7 +34,7 @@ SPEED = 20
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), 0, 32)
 
 # Заголовок окна игрового поля:
-pygame.display.set_caption("Змейка")
+pygame.display.set_caption('Змейка')
 
 # Настройка времени:
 clock = pygame.time.Clock()
@@ -87,8 +88,7 @@ class Snake(GameObject):
     """Класс для змейки, управляемой игроком."""
 
     def __init__(self):
-        """
-        Инициализирует змейку с начальной позицией,
+        """Инициализирует змейку с начальной позицией,
         цветом и направлением.
         """
         super().__init__()
@@ -193,5 +193,5 @@ def main():
         pygame.display.update()
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
