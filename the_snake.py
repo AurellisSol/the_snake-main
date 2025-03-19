@@ -1,6 +1,6 @@
 from random import choice, randint
-
 import pygame
+
 
 # Константы для размеров поля и сетки:
 SCREEN_WIDTH, SCREEN_HEIGHT = 640, 480
@@ -17,13 +17,13 @@ RIGHT = (1, 0)
 # Цвет фона - черный:
 BOARD_BACKGROUND_COLOR = (0, 0, 0)
 
-# Цвет границы ячейки
+# Цвет границы ячейки:
 BORDER_COLOR = (93, 216, 228)
 
-# Цвет яблока
+# Цвет яблока:
 APPLE_COLOR = (255, 0, 0)
 
-# Цвет змейки
+# Цвет змейки:
 SNAKE_COLOR = (0, 255, 0)
 
 # Скорость движения змейки:
@@ -33,16 +33,15 @@ SPEED = 20
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), 0, 32)
 
 # Заголовок окна игрового поля:
-pygame.display.set_caption('Змейка')
+pygame.display.set_caption("Змейка")
 
 # Настройка времени:
 clock = pygame.time.Clock()
 
 
-# Тут опишите все классы игры.
-class GameObject():
-    def __init__(self) -> None:
-        self.position = (SCREEN_WIDTH // 2), (SCREEN_HEIGHT // 2)
+class GameObject:
+    def __init__(self):
+        self.position = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
         self.body_color = None
 
     def draw(self):
@@ -53,6 +52,7 @@ class Apple(GameObject):
     def __init__(self):
         super().__init__()
         self.body_color = APPLE_COLOR
+        self.randomize_position()
 
     def draw(self):
         rect = pygame.Rect(self.position, (GRID_SIZE, GRID_SIZE))
@@ -62,7 +62,7 @@ class Apple(GameObject):
     def randomize_position(self):
         self.position = (
             randint(0, GRID_WIDTH - 1) * GRID_SIZE,
-            randint(0, GRID_HEIGHT - 1) * GRID_SIZE
+            randint(0, GRID_HEIGHT - 1) * GRID_SIZE,
         )
 
 
@@ -88,7 +88,7 @@ class Snake(GameObject):
         x, y = self.direction
         new = (
             (current[0] + (x * GRID_SIZE)) % SCREEN_WIDTH,
-            (current[1] + (y * GRID_SIZE)) % SCREEN_HEIGHT
+            (current[1] + (y * GRID_SIZE)) % SCREEN_HEIGHT,
         )
         if len(self.positions) > 2 and new in self.positions[2:]:
             self.reset()
@@ -155,6 +155,5 @@ def main():
         pygame.display.update()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
-
